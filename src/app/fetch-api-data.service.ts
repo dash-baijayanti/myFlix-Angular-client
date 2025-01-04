@@ -6,21 +6,27 @@ import { map } from 'rxjs/operators';
 
 //Declaring the api url that will provide data for the client app
 const apiUrl = 'https://movie-api-7rmr.onrender.com/';
-const token = localStorage.getItem('token');
+const token = (() => {
+  try {
+    return localStorage.getItem('token');
+  } catch (e) {
+    return null; // Fallback if localStorage is unavailable
+  }
+})();
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class UserRegistrationService {
+export class FetchApiDataService {
   // Inject the HttpClient module to the constructor params
- // This will provide HttpClient to the entire class, making it available via this.http
+  // This will provide HttpClient to the entire class, making it available via this.http
   constructor(private http: HttpClient) {
   }
 
   private getHeaders(): HttpHeaders {
     return new HttpHeaders({
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${ token }`
     });
   }
 
@@ -28,7 +34,7 @@ export class UserRegistrationService {
   public userRegistration(userDetails: any): Observable<any> {
     console.log(userDetails);
     return this.http.post(apiUrl + 'users', userDetails).pipe(
-    catchError(this.handleError)
+      catchError(this.handleError)
     );
   }
 
@@ -41,8 +47,9 @@ export class UserRegistrationService {
 
   // 3.Get all Movies
   public getAllMovies(): Observable<any> {
-    return this.http.get(apiUrl + 'movies', {headers: this.getHeaders()
-      }).pipe(
+    return this.http.get(apiUrl + 'movies', {
+      headers: this.getHeaders()
+    }).pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
     );
@@ -50,21 +57,21 @@ export class UserRegistrationService {
 
   // 4.Get one movie
   public getMovie(movieId: string): Observable<any> {
-    return this.http.get(apiUrl + `movies/${movieId}`, { headers: this.getHeaders() }).pipe(
+    return this.http.get(apiUrl + `movies/${ movieId }`, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
 
   // 5. Get Director
   public getDirector(directorName: string): Observable<any> {
-    return this.http.get(apiUrl + `directors/${directorName}`, { headers: this.getHeaders() }).pipe(
+    return this.http.get(apiUrl + `directors/${ directorName }`, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
 
   // 6. Get Genre
   public getGenre(genreName: string): Observable<any> {
-    return this.http.get(apiUrl + `genres/${genreName}`, { headers: this.getHeaders() }).pipe(
+    return this.http.get(apiUrl + `genres/${ genreName }`, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
@@ -85,7 +92,7 @@ export class UserRegistrationService {
 
   // 9. Add a Movie to Favorite Movies
   public addFavoriteMovie(movieId: string): Observable<any> {
-    return this.http.post(apiUrl + `users/movies/${movieId}`, null, { headers: this.getHeaders() }).pipe(
+    return this.http.post(apiUrl + `users/movies/${ movieId }`, null, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
@@ -106,27 +113,27 @@ export class UserRegistrationService {
 
   // 12. Delete a Movie from Favorite Movies
   public deleteFavoriteMovie(movieId: string): Observable<any> {
-    return this.http.delete(apiUrl + `users/movies/${movieId}`, { headers: this.getHeaders() }).pipe(
+    return this.http.delete(apiUrl + `users/movies/${ movieId }`, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
 
-  private handleError(error: HttpErrorResponse): Observable<never>  {
+  private handleError(error: HttpErrorResponse): Observable<never> {
     if (error.error instanceof ErrorEvent) {
-    console.error('Some error occurred:', error.error.message);
+      console.error('Some error occurred:', error.error.message);
     } else {
-    console.error(
-        `Error Status code ${error.status}, ` +
-        `Error body is: ${error.error}`
+      console.error(
+        `Error Status code ${ error.status }, ` +
+        `Error body is: ${ error.error }`
       );
     }
     return throwError(
-    'Something bad happened; please try again later.');
+      'Something bad happened; please try again later.');
   }
 
-// Non-typed response extraction
+  // Non-typed response extraction
   private extractResponseData(res: any): any {
-    return res || { };
+    return res || {};
   }
 }
 
