@@ -8,19 +8,20 @@
     <form>
 
       <mat-form-field>
-        <input matInput [(ngModel)]="userData.UserName" placeholder="Username" type="text" name="Username" required>
+        <input matInput [(ngModel)]="users.userName" placeholder="userName" type="text" name="userName" required>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput [(ngModel)]="userData.Password" type="password" placeholder="password" name="password" required>
+        <input matInput [(ngModel)]="users.password" type="password" placeholder="password" name="password"
+          required>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput [(ngModel)]="userData.Email" placeholder="Email" type="email" name="Email" required>
+        <input matInput [(ngModel)]="users.Email" placeholder="Email" type="Email" name="Email" required>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput [(ngModel)]="userData.Birthday" type="date" placeholder="Birthday" name="Birthday" required>
+        <input matInput [(ngModel)]="users.birthDate" type="date" placeholder="birthDate" name="birthDate" required>
       </mat-form-field>
 
     </form>

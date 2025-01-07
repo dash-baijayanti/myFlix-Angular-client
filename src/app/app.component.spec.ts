@@ -23,7 +23,7 @@ describe('AppComponent', () => {
   it(`should have as title 'myFlix-Angular-client'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('myFlix-Angular-client');
+    expect(app.Title).toEqual('myFlix-Angular-client');
   });
 
   it('should render title', () => {

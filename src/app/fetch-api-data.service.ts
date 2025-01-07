@@ -31,16 +31,17 @@ export class FetchApiDataService {
   }
 
   //1.User Registration
-  public userRegistration(userDetails: any): Observable<any> {
-    console.log(userDetails);
-    return this.http.post(apiUrl + 'users', userDetails).pipe(
+  public userRegistration(users: any): Observable<any> {
+    console.log(users);
+    return this.http.post(apiUrl + 'users', users).pipe(
       catchError(this.handleError)
     );
   }
 
   // 2.User Login
-  public userLogin(userDetails: any): Observable<any> {
-    return this.http.post(apiUrl + 'login', userDetails).pipe(
+  public userLogin(users: any): Observable<any> {
+    console.log(users);
+    return this.http.post(apiUrl + 'login', users).pipe(
       catchError(this.handleError)
     );
   }
@@ -127,8 +128,7 @@ export class FetchApiDataService {
         `Error body is: ${ error.error }`
       );
     }
-    return throwError(
-      'Something bad happened; please try again later.');
+    return throwError(error.error?.message || 'An unexpected error occurred.');
   }
 
   // Non-typed response extraction
