@@ -1,11 +1,36 @@
-<div class="profile-container">
-  <h2>User Profile</h2>
+<div class="welcome">
 
-  <!-- Display user profile data -->
-  <div class="profile-info" *ngIf="user">
-    <p><strong>Name:</strong> {{ user.userName }}</p>
-    <p><strong>Email:</strong> {{ user.Email }}</p>
-    <p><strong>Password:</strong> {{ user.password }}</p>
-    <p><strong>Birthday:</strong> {{ user.birthDate }}</p>
+
+
+  <div class="profile-container">
+    <h2>User Profile</h2>
   </div>
+
+</div>
+
+<div class="position">
+
+  <button mat-raised-button (click)=" goToWelcome()" color="primary">Logout</button>
+
+  <button mat-raised-button (click)=" goToAllMovies()" color="primary">All Movies</button>
+
+  <button mat-raised-button (click)="getUserDetails(users)" color="primary">Delete User</button>
+
+</div>
+
+
+
+
+<!-- Display user profile data -->
+<div class="profile-info" *ngIf="users">
+  <mat-card>
+
+    <p><strong>Name:</strong> {{ users.userName }}</p>
+    <p><strong>Email:</strong> {{ users.Email }}</p>
+    <p><strong>Password:</strong> {{ users.password }}</p>
+    <p><strong>Birthday:</strong> {{ users.birthDate }}</p>
+
+
+    <button mat-raised-button (click)="getUserDetails(users)" color="primary">Update User details</button>
+  </mat-card>
 </div>

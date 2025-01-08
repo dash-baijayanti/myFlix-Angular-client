@@ -1,0 +1,30 @@
+
+  .welcome{
+    height: 20%;
+    width: 100%;
+    // color: rgb(17, 238, 238);
+    background-color: rgb(10, 10, 10);
+    color: aqua;
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
+    text-align: center;
+}
+.position{
+  background-color: aquamarine;
+  height:100px ;
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
+  text-align: center;
+}
+.profile-info{
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
+  text-align: center;
+  height: auto;
+  width: auto;
+
+}
