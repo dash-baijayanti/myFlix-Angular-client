@@ -31,5 +31,17 @@ export class MovieCardComponent implements OnInit{
    goToUserProfile(): void {
     this.router.navigate(['profile']);
   }
+  
+  showGenreAlert(genre: any): void {
+    alert(genre);
+  }
+
+  showDirectorAlert(director: any):void {
+    alert(director);
+  }
+
+  showMovieDetails(movie: any): void{
+    alert(movie)
+  }
 
 }
