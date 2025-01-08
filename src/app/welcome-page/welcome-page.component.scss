@@ -1,0 +1,23 @@
+.welcome{
+  height: 20%;
+  width: 100%;
+  color: aqua;
+  background-color: black;
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
+  text-align: center;
+}
+.position{
+  background-color: aquamarine;
+  height:300px ;
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
+  text-align: center;
+}
+.main-page{
+  background-color: rgb(247, 213, 168);
+  background-size: cover;
+}

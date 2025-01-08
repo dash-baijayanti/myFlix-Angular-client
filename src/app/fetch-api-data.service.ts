@@ -78,8 +78,8 @@ export class FetchApiDataService {
   }
 
   // 7. Get User
-  public getUser(): Observable<any> {
-    return this.http.get(apiUrl + 'users', { headers: this.getHeaders() }).pipe(
+  public getUser(userName: string): Observable<any> {
+    return this.http.get(apiUrl + `users/${userName}`, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
@@ -99,15 +99,15 @@ export class FetchApiDataService {
   }
 
   // 10. Edit User
-  public editUser(userDetails: any): Observable<any> {
-    return this.http.put(apiUrl + 'users', userDetails, { headers: this.getHeaders() }).pipe(
+  public editUser(userDetails: any, userName: string): Observable<any> {
+    return this.http.put(apiUrl + `users/${userName}`, userDetails, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
 
   // 11. Delete User
-  public deleteUser(): Observable<any> {
-    return this.http.delete(apiUrl + 'users', { headers: this.getHeaders() }).pipe(
+  public deleteUser(userName: string): Observable<any> {
+    return this.http.delete(apiUrl + `users/${userName}`, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
