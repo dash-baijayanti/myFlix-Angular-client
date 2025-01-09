@@ -14,7 +14,7 @@
 
   <button mat-raised-button (click)=" goToAllMovies()" color="primary">All Movies</button>
 
-  <button mat-raised-button (click)="getUserDetails(users)" color="primary">Delete User</button>
+  <button mat-raised-button (click)="deleteUser()" color="primary">Delete User</button>
 
 </div>
 
@@ -29,8 +29,50 @@
     <p><strong>Email:</strong> {{ users.Email }}</p>
     <p><strong>Password:</strong> {{ users.password }}</p>
     <p><strong>Birthday:</strong> {{ users.birthDate }}</p>
+    <!-- <form>
+      <mat-form-field>
+        <input
+          matInput
+          [(ngModel)]="users.Username"
+          placeholder="Username"
+          type="text"
+          name="Username"
+          required
+        >
+        </mat-form-field>
+        <mat-form-field>
+        <input
+          matInput
+          [(ngModel)]="users.Password"
+          type = "password"
+          placeholder="Password"
+          name="Password"
+          required
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          [(ngModel)]="users.Email"
+          type = "email"
+          placeholder="Email"
+          name="Email"
+          required
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          [(ngModel)]="users.Birthday"
+          type = "date"
+          placeholder="Birthday"  
+          name="Birthday"
+        >
+      </mat-form-field>
+    </form> -->
+  
 
 
-    <button mat-raised-button (click)="getUserDetails(users)" color="primary">Update User details</button>
+    <button mat-raised-button (click)="getUserDetails()" color="primary">Update User details</button>
   </mat-card>
 </div>

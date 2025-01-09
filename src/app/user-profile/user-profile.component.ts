@@ -30,28 +30,25 @@ export class UserProfileComponent implements OnInit {
   //  { this.user = JSON.parse(localStorage.getItem("user") || ""); }
 
   ngOnInit(): void {
-    this.getUserDetails(this.users);
+    const userName = localStorage.getItem('users');
+    if (userName) {
+      this.getUserDetails();
+    }
   }
 
 
 
-  getUserDetails(userName: string): void {
-    // const userName = localStorage.getItem('user'); 
-    //    // Assuming the response contains a single user object
-    //    if (userName) {
+  getUserDetails(): void {
 
-    this.fetchApiData.getUser(userName).subscribe((resp) => {
-      this.users = resp; // Assuming the API returns the user's details
-      console.log(this.users.userNmae);
-    }, (error) => {
-      const userName = localStorage.getItem('user') || '';
-      console.log(this.users.userName);
-      if (!userName) {
-        this.snackBar.open('No user logged in.', 'OK', { duration: 3000 });
-        this.router.navigate(['/']);
-       
-        this.router.navigate(['welcome']);
-      }
+    this.fetchApiData.editUser(this.users.userName, this.users).subscribe((resp) => {
+      this.users = resp[0];
+      // localStorage.getItem('user');
+      console.log(this.users);
+      return this.users;
+      // this.router.navigate(['/']);
+
+      // this.router.navigate(['welcome']);
+
     });
 
   }
@@ -60,9 +57,18 @@ export class UserProfileComponent implements OnInit {
     this.router.navigate(['movies']);
   }
 
-  goToWelcome(): void{
+  goToWelcome(): void {
     this.router.navigate(['welcome']);
   }
+  deleteUser(): void {
+    // const user: any = JSON.parse(localStorage.getItem('users') as any);
+    // this.fetchApiData.deleteUser(this.users.userName).subscribe((resp: any) => {
+    //   console.log(resp);
+    this.router.navigate(['welcome']);
+  }
+
 }
+
+
 
 

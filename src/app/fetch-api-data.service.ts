@@ -65,21 +65,22 @@ export class FetchApiDataService {
 
   // 5. Get Director
   public getDirector(directorName: string): Observable<any> {
-    return this.http.get(apiUrl + `directors/${ directorName }`, { headers: this.getHeaders() }).pipe(
+    return this.http.get(apiUrl + `movies/directors/${ directorName }`, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
 
   // 6. Get Genre
   public getGenre(genreName: string): Observable<any> {
-    return this.http.get(apiUrl + `genres/${ genreName }`, { headers: this.getHeaders() }).pipe(
+    return this.http.get(apiUrl + `movies/Genre/${ genreName }`, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
 
   // 7. Get User
   public getUser(userName: string): Observable<any> {
-    return this.http.get(apiUrl + `users/${userName}`, { headers: this.getHeaders() }).pipe(
+    const url = `${ apiUrl }users/${ userName }`;
+    return this.http.get(url, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
@@ -93,28 +94,28 @@ export class FetchApiDataService {
 
   // 9. Add a Movie to Favorite Movies
   public addFavoriteMovie(movieId: string): Observable<any> {
-    return this.http.post(apiUrl + `users/movies/${ movieId }`, null, { headers: this.getHeaders() }).pipe(
+    return this.http.post(apiUrl + `users/userName/movies/${ movieId }`, null, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
 
   // 10. Edit User
   public editUser(userDetails: any, userName: string): Observable<any> {
-    return this.http.put(apiUrl + `users/${userName}`, userDetails, { headers: this.getHeaders() }).pipe(
+    return this.http.put(apiUrl + `users/${ userName }`, userDetails, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
 
   // 11. Delete User
   public deleteUser(userName: string): Observable<any> {
-    return this.http.delete(apiUrl + `users/${userName}`, { headers: this.getHeaders() }).pipe(
+    return this.http.delete(apiUrl + `users/${ userName }`, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
 
   // 12. Delete a Movie from Favorite Movies
   public deleteFavoriteMovie(movieId: string): Observable<any> {
-    return this.http.delete(apiUrl + `users/movies/${ movieId }`, { headers: this.getHeaders() }).pipe(
+    return this.http.delete(apiUrl + `users/userName/movies/${ movieId }`, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
