@@ -9,70 +9,46 @@
 </div>
 
 <div class="position">
-
-  <button mat-raised-button (click)=" goToWelcome()" color="primary">Logout</button>
-
-  <button mat-raised-button (click)=" goToAllMovies()" color="primary">All Movies</button>
-
-  <button mat-raised-button (click)="deleteUser()" color="primary">Delete User</button>
-
+  <button mat-raised-button class="btn logout-btn" (click)="goToWelcome()" color="primary">Logout</button>
+  <button mat-raised-button class="btn all-movies-btn" (click)="goToAllMovies()" color="accent">All Movies</button>
+  <button mat-raised-button class="btn delete-btn" (click)="deleteUser()" color="warn">Delete User</button>
 </div>
 
 
 
 
 <!-- Display user profile data -->
-<div class="profile-info" *ngIf="users">
-  <mat-card>
-
-    <p><strong>Name:</strong> {{ users.userName }}</p>
-    <p><strong>Email:</strong> {{ users.Email }}</p>
-    <p><strong>Password:</strong> {{ users.password }}</p>
-    <p><strong>Birthday:</strong> {{ users.birthDate }}</p>
-    <!-- <form>
-      <mat-form-field>
-        <input
-          matInput
-          [(ngModel)]="users.Username"
-          placeholder="Username"
-          type="text"
-          name="Username"
-          required
-        >
-        </mat-form-field>
-        <mat-form-field>
-        <input
-          matInput
-          [(ngModel)]="users.Password"
-          type = "password"
-          placeholder="Password"
-          name="Password"
-          required
-        >
-      </mat-form-field>
-      <mat-form-field>
-        <input
-          matInput
-          [(ngModel)]="users.Email"
-          type = "email"
-          placeholder="Email"
-          name="Email"
-          required
-        >
-      </mat-form-field>
-      <mat-form-field>
-        <input
-          matInput
-          [(ngModel)]="users.Birthday"
-          type = "date"
-          placeholder="Birthday"  
-          name="Birthday"
-        >
-      </mat-form-field>
-    </form> -->
-  
+<div class="profile-info">
+  <mat-card *ngIf="users;">
 
 
-    <button mat-raised-button (click)="getUserDetails()" color="primary">Update User details</button>
-  </mat-card>
+
+    <p>User Name:
+      <mat-card-title>{{ users.userName }}</mat-card-title>
+    </p><br>
+
+    <p>Email:
+      <mat-card-subtitle>{{ users.Email }}</mat-card-subtitle>
+    </p><br>
+
+    <p>Password:
+      <mat-card-subtitle>{{ users.password }}</mat-card-subtitle>
+    </p><br>
+
+
+    <p>Birth Date: {{ users.birthDate | date }}</p>
+
+  </mat-card><br>
+</div>
+
+
+<!-- <p><strong>Name:</strong> {{ users.userName }}</p>
+  <p><strong>Email:</strong> {{ users.Email }}</p>
+  <p><strong>Password:</strong> {{ users.password }}</p>
+  <p><strong>Birthday:</strong> {{ users.birthDate }}</p> -->
+
+
+<div class="fb">
+  <button class="btn" mat-raised-button (click)="getUserDetails(users)" color="primary">Update User details</button>
+
 </div>
