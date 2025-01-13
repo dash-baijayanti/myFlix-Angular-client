@@ -36,19 +36,33 @@
     </p><br>
 
 
-    <p>Birth Date: {{ users.birthDate | date }}</p>
+    <p *ngIf="users?.birthDate">Birth Date: {{ users?.birthDate | date  }}</p>
 
+
+
+    <mat-card-content>
+      <form *ngIf="users" (ngSubmit)="onEditUser()">
+        <mat-form-field>
+          <input matInput [(ngModel)]="users.userName" name="userName" placeholder="Username">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput [(ngModel)]="users.Email" name="Email" placeholder="Email">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput [(ngModel)]="users.password" name="password" placeholder="Password" type="password">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput [(ngModel)]="users.birthDate" name="birthDate" placeholder="Birth Date">
+        </mat-form-field>
+        <div class="fb">
+          <button class="btn btn-update" mat-raised-button color="primary" type="submit">Update User details</button>
+
+        </div>
+
+      </form>
+    </mat-card-content>
   </mat-card><br>
-</div>
-
-
-<!-- <p><strong>Name:</strong> {{ users.userName }}</p>
-  <p><strong>Email:</strong> {{ users.Email }}</p>
-  <p><strong>Password:</strong> {{ users.password }}</p>
-  <p><strong>Birthday:</strong> {{ users.birthDate }}</p> -->
-
-
-<div class="fb">
-  <button class="btn" mat-raised-button (click)="getUserDetails(users)" color="primary">Update User details</button>
-
 </div>

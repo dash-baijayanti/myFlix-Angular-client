@@ -5,13 +5,16 @@ import { Router } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { MovieCardComponent } from '../movie-card/movie-card.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss'],
-  imports: [MatCardModule, CommonModule],
+  imports: [MatCardModule, CommonModule, MatFormFieldModule, MatInputModule, FormsModule],
 })
 export class UserProfileComponent implements OnInit {
   users: any = {
@@ -28,7 +31,8 @@ export class UserProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const userName = localStorage.getItem('user');
+    const userName = localStorage.getItem('users');
+    console.log('Retrieved userName:', userName);  // Check if userName is correctly retrieved
     if (userName) {
       this.getUserDetails(userName);
     } else {
@@ -44,13 +48,38 @@ export class UserProfileComponent implements OnInit {
   getUserDetails(userName: string): void {
     this.fetchApiData.getUser(userName).subscribe({
       next: (resp) => {
-        this.users = resp[0];
-        console.log('User details fetched successfully:', this.users);
-        console.log(this.users.birthDate);
+        console.log('API Response:', resp);  // Log the entire response for debugging
+        if (resp && resp[0]) {
+          this.users = resp[0];
+          console.log('User details fetched successfully:', this.users);
+        } else {
+          console.error('No user details available');
+          this.snackBar.open('Failed to fetch user details. Please try again.', 'OK', { duration: 3000 });
+        }
       },
       error: (err) => {
         console.error('Error fetching user details:', err);
         this.snackBar.open('Failed to fetch user details. Please try again.', 'OK', { duration: 3000 });
+      }
+    });
+  }
+
+  onEditUser(): void {
+    const userName = this.users.userName;
+    const updatedUserDetails = {
+      Email: this.users.Email,
+      password: this.users.password,
+      birthDate: this.users.birthDate
+    };
+
+    this.fetchApiData.editUser(updatedUserDetails, userName).subscribe({
+      next: (resp) => {
+        console.log('User details updated successfully:', resp);
+        this.snackBar.open('Your profile has been updated.', 'OK', { duration: 3000 });
+      },
+      error: (err) => {
+        console.error('Error updating user details:', err);
+        this.snackBar.open('Failed to update your details. Please try again.', 'OK', { duration: 3000 });
       }
     });
   }

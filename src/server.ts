@@ -3,14 +3,17 @@ import {
   createNodeRequestHandler,
   isMainModule,
   writeResponseToNodeResponse,
+
 } from '@angular/ssr/node';
 import express from 'express';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import 'zone.js/node';
+import { enableProdMode } from '@angular/core';
 
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
-
+enableProdMode();
 const app = express();
 const angularApp = new AngularNodeAppEngine();
 
@@ -56,7 +59,7 @@ app.use('/**', (req, res, next) => {
 if (isMainModule(import.meta.url)) {
   const port = process.env['PORT'] || 4000;
   app.listen(port, () => {
-    console.log(`Node Express server listening on http://localhost:${port}`);
+    console.log(`Node Express server listening on http://localhost:${ port }`);
   });
 }
 
