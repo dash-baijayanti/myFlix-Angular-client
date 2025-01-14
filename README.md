@@ -64,7 +64,7 @@ Follow these steps to set up the project locally:
 1. **Clone the Repository**
 
    ```bash
-   git clone git@github.com:deeps4/myFlix-Angular-client.git
+   git clone git@github.com:dash-baijayanti/myFlix-Angular-client.git
    cd myFlix-Angular-client
    ```
 
