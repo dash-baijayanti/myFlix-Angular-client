@@ -9,7 +9,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 
-
+/**
+ * @component
+ * @name UserProfileComponent
+ * @description
+ * This component handles user profile functionalities, such as displaying user details, editing profile information,
+ * navigating to other pages (Movies or Welcome), and deleting the user account.
+ * It uses Angular services to communicate with the backend API and display relevant information or errors to the user.
+ */
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -17,6 +24,17 @@ import { FormsModule } from '@angular/forms';
   imports: [MatCardModule, CommonModule, MatFormFieldModule, MatInputModule, FormsModule],
 })
 export class UserProfileComponent implements OnInit {
+
+  /**
+   * @description
+   * The `users` object contains details of the currently logged-in user.
+   * These details are displayed in the profile and can be edited.
+   * @type {object}
+   * @property {string} userName - The user's username.
+   * @property {string} Email - The user's email address.
+   * @property {string} password - The user's password.
+   * @property {string} birthDate - The user's birth date.
+   */
   users: any = {
     userName: '',
     Email: '',
@@ -24,12 +42,23 @@ export class UserProfileComponent implements OnInit {
     birthDate: '',
   };
 
+  /**
+   * @constructor
+   * @param {FetchApiDataService} fetchApiData - Service for interacting with the backend API.
+   * @param {MatSnackBar} snackBar - Service for displaying notification messages to the user.
+   * @param {Router} router - Service for navigating between application views.
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
     private snackBar: MatSnackBar,
     private router: Router
   ) { }
 
+  /**
+   * @description
+   * This lifecycle hook is called when the component is initialized.
+   * It retrieves the logged-in user's username from `localStorage` and fetches the user's profile details.
+   */
   ngOnInit(): void {
     const userName = localStorage.getItem('users');
     console.log('Retrieved userName:', userName);  // Check if userName is correctly retrieved
@@ -42,8 +71,10 @@ export class UserProfileComponent implements OnInit {
   }
 
   /**
-   * Fetches the user details from the API and updates the `users` object.
-   * @param userName The logged-in user's username from localStorage.
+   * @description
+   * Fetches the user details from the backend API and updates the `users` object.
+   * This method is called when the component is initialized to retrieve the profile information of the logged-in user.
+   * @param {string} userName - The logged-in user's username, retrieved from localStorage.
    */
   getUserDetails(userName: string): void {
     this.fetchApiData.getUser(userName).subscribe({
@@ -64,6 +95,11 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  /**
+   * @description
+   * This method is triggered when the user clicks on the "Edit" button to update their profile details.
+   * It sends the updated user details to the backend API for updating the user's profile information.
+   */
   onEditUser(): void {
     const userName = this.users.userName;
     const updatedUserDetails = {
@@ -85,21 +121,26 @@ export class UserProfileComponent implements OnInit {
   }
 
   /**
+   * @description
    * Navigates to the Movies page.
+   * This method is triggered when the user clicks on the "Movies" button in the profile section.
    */
   goToAllMovies(): void {
     this.router.navigate(['movies']);
   }
-
   /**
-   * Navigates to the Welcome page.
-   */
+  * @description
+  * Navigates to the Welcome page.
+  * This method is triggered when the user clicks on the "Welcome" button in the profile section.
+  */
   goToWelcome(): void {
     this.router.navigate(['welcome']);
   }
 
   /**
-   * Deletes the user account and redirects to the Welcome page.
+   * @description
+   * Deletes the user's account and redirects the user to the Welcome page.
+   * This method is triggered when the user clicks on the "Delete Account" button in the profile section.
    */
   deleteUser(): void {
     const userName = this.users.userName;

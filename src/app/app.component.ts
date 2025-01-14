@@ -1,9 +1,21 @@
+/**
+ * @file app.component.ts
+ * @description The root component of the Angular application. Serves as the entry point and primary container for the app.
+ * @module AppComponent
+ */
+
 import { Component } from '@angular/core';
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
 import { MatDialog } from '@angular/material/dialog';
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
 import { MovieCardComponent } from './movie-card/movie-card.component';
 
+/**
+ * The root component of the Angular application.
+ * 
+ * @class AppComponent
+ * @description This component initializes the application and sets up its primary structure.
+ */
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,27 +23,8 @@ import { MovieCardComponent } from './movie-card/movie-card.component';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+  /** 
+   * @property {string} Title - The title of the application displayed in the header or browser tab.
+   */
   Title = 'myFlix-Angular-client';
-
-  // constructor(public dialog: MatDialog) { }
-  // // This is the function that will open the dialog when the signup button is clicked  
-  // openUserRegistrationDialog(): void {
-  //   this.dialog.open(UserRegistrationFormComponent, {
-  //     // Assigning the dialog a width
-  //     width: '280px'
-  //   });
-  // }
-
-  // openUserLoginDialog(): void {
-  //   this.dialog.open(UserLoginFormComponent, {
-  //     // Assigning the dialog a width
-  //     width: '280px'
-  //   });
-  // }
-
-  // openMoviesCardDialog(): void{
-  //   this.dialog.open(MovieCardComponent,{
-  //     width: 'auto'
-  //   });
-  // }
 }
