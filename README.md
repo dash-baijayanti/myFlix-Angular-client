@@ -146,3 +146,6 @@ Contributions are welcome! To contribute:
 
 
 **Enjoy exploring MyFlix-Angular-Client! 🎬**
+<img src="angular/Screenshot 2025-01-15 151920.png" alt="movieaPP" width="500" height="300">
+<img src="angular/Screenshot 2025-01-15 152137.png" alt="movieaPP" width="500" height="300">
+<img src="angular/Screenshot 2025-01-15 152212.png" alt="movieaPP" width="500" height="300">
